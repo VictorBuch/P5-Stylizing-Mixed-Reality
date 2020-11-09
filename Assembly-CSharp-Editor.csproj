@@ -251,18 +251,6 @@
  <Reference Include="UnityEditor.OSXStandalone.Extensions">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.11f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
  </Reference>
- <Reference Include="GLTFSerialization">
- <HintPath>C:/Users/stud/Documents/Student projects/P5-we-are-live/Assets/Sketchfab For Unity/Dependencies/Libraries/GLTFSerialization.dll</HintPath>
- </Reference>
- <Reference Include="Ionic.Zip.Unity">
- <HintPath>C:/Users/stud/Documents/Student projects/P5-we-are-live/Assets/Sketchfab For Unity/Dependencies/Libraries/Ionic.Zip.Unity.dll</HintPath>
- </Reference>
- <Reference Include="Newtonsoft.Json">
- <HintPath>C:/Users/stud/Documents/Student projects/P5-we-are-live/Assets/Sketchfab For Unity/Dependencies/Libraries/Newtonsoft.Json.dll</HintPath>
- </Reference>
- <Reference Include="UnityGLTF">
- <HintPath>C:/Users/stud/Documents/Student projects/P5-we-are-live/Assets/Sketchfab For Unity/Dependencies/Libraries/UnityGLTF.dll</HintPath>
- </Reference>
  <Reference Include="ICSharpCode.NRefactory">
  <HintPath>C:/Users/stud/Documents/Student projects/P5-we-are-live/Library/PackageCache/com.unity.render-pipelines.core@7.3.1/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
  </Reference>
