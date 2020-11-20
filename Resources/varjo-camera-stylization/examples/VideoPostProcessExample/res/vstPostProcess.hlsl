@@ -217,6 +217,25 @@ float3 applyPointilism(in float2 uv, in float pointilismStep, in float pointilis
     return outColor;
 }
 
+float3 applyBlur(in float2 uv, in int radius) {
+
+    float filter_size = float((radius * 2) * (radius * 2));
+    float3 sum = float3(0.0f, 0.0f, 0.0f);
+
+    for (int x = -radius; x < radius; x++)  {
+        for (int y = -radius; y < radius; y++)  {
+            float2 uvOffset = float2((float) x / sourceSize[0], (float) y / sourceSize[1]);
+            float3 color = inputTex.SampleLevel(SamplerLinearClamp, uv + uvOffset), 0.0, 0.0).rgb;
+            sum += color;
+        }
+    }
+
+    float3 outColor = sum / filter_size;
+    return outColor;
+}
+
+// Stylization branch
+
 
 
 
