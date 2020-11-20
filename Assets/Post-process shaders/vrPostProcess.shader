@@ -54,15 +54,13 @@
     // List of properties to control your post process effect
 
     int _CartoonActive;
-    float _LineStrength;
-    int _ClusterSize;
-
-
     int _WaterColorActive;
     int _WaterColorRadius;
-
     int _SketchActive;
+    int _PointilismActive;
 
+    float _PointStep;
+    float _PointThresh;
 
     TEXTURE2D_X(_InputTexture);
 
@@ -168,11 +166,14 @@
 
         float pixel_sum_x = 0.0;
         float pixel_sum_y = 0.0;
+        float3 buffer[16];
+        int i = 0;
         for (int y = -1; y < 2; y++) {
             for (int x = -1; x < 2; x++) {
 
                 
                 float3 pixel = LOAD_TEXTURE2D_X(_InputTexture, uint2((positionSS.x + x),(positionSS.y + y))).xyz; 
+                buffer[i++] = pixel; 
 
                 float grayscale_value = (pixel.r + pixel.g + pixel.b) / 3;
             
@@ -185,9 +186,13 @@
         if (edge_value > 0.05){
             outColor = float3(0,0,0);
         } else {
-            outColor = round(outColor*_ClusterSize)/_ClusterSize;
+            outColor = outColor;
         }
         return outColor;
+    }
+
+    float3 FindMedian(float3 buffer[16]){
+        return buffer[8];
     }
 
     float3 Sketch(uint2 positionSS){
@@ -213,6 +218,27 @@
         return target;
     }
 
+    float3 ApplyPointilism(uint2 positionSS, float pointilismStep, float pointilismThreshold) {
+        float2 uv = positionSS / _ScreenSize;
+
+        float3 outColor = float3(0.988235, 0.94902, 0.870588);
+
+        float2 near_uv = float2(round(uv * pointilismStep));
+        float3 color = LOAD_TEXTURE2D_X(_InputTexture, uint2(near_uv / pointilismStep * _ScreenSize)).rgb;
+
+        float color_max = max(max(color.r, color.b), color.g);
+        float color_min = min(min(color.r, color.b), color.g);
+        float delta = color_max - color_min;
+
+        float threshold = max((color_min + color_max) / 2.0, pointilismThreshold);
+
+        if (distance(uv * pointilismStep, near_uv) < threshold) {
+            outColor = color;
+        }
+
+        return outColor;
+    }
+
     float4 CustomPostProcess(VertexOutput input) : SV_Target {
 
         UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
@@ -224,17 +250,21 @@
 
         // edge detection
         if (_CartoonActive) {
-            outColor = Cartoon(positionSS, _LineStrength, _ClusterSize);
+            outColor = Cartoon(positionSS, 0.7f, 15);
         } 
 
         // for water color
         if(_WaterColorActive) {
-            outColor = WaterColor(positionSS, _WaterColorRadius);
+            outColor = WaterColor(positionSS, 6);
         }
 
         // for sketch color
         if (_SketchActive){
             outColor = Sketch(positionSS);
+        }
+
+        if (_PointilismActive){
+            outColor = ApplyPointilism(positionSS, 65.0, 0.5);
         }
 
         return float4(outColor, 1);
@@ -243,6 +273,7 @@
 
 
     ENDHLSL
+    
 
     SubShader {
 
