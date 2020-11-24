@@ -16,22 +16,22 @@ public sealed class vrPostProcess : CustomPostProcessVolumeComponent, IPostProce
 {
     [Tooltip("Ativate/Deactivate the cartoon effect")]
 
-    public ClampedIntParameter cartoon_active = new ClampedIntParameter(1, 1, 1);
+    public ClampedIntParameter cartoon_active = new ClampedIntParameter(0, 1, 1);
 
 
     [Tooltip("Ativate/Deactivate the water color effect")]
 
-    public ClampedIntParameter wc_active = new ClampedIntParameter(1, 1, 1);
+    public ClampedIntParameter wc_active = new ClampedIntParameter(0, 1, 1);
 
 
     [Tooltip("Ativate/Deactivate the sketch effect")]
 
-    public ClampedIntParameter sketch_active = new ClampedIntParameter(1, 1, 1);
+    public ClampedIntParameter sketch_active = new ClampedIntParameter(0, 1, 1);
 
 
     [Tooltip("Ativate/Deactivate the Pointilism effect")]
 
-    public ClampedIntParameter pointilism_active = new ClampedIntParameter(1, 1, 1);
+    public ClampedIntParameter pointilism_active = new ClampedIntParameter(0, 1, 1);
 
 
 
