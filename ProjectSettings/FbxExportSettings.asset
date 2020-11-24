@@ -4,28 +4,33 @@
         "m_EditorHideFlags": 0,
         "m_Name": "",
         "m_EditorClassIdentifier": "Unity.Formats.Fbx.Editor:UnityEditor.Formats.Fbx.Exporter:ExportSettings",
-        "ExportOutsideProject": false,
+        "ExportOutsideProject": true,
         "Verbose": false,
         "launchAfterInstallation": true,
         "HideSendToUnityMenu": true,
         "BakeAnimation": true,
         "showConvertToPrefabDialog": true,
-        "integrationSavePath": "/Users/jakubszura/Documents/Gith/P5-we-are-live",
+        "integrationSavePath": "/Users/jakubszura/Documents/Gith",
         "selectedDCCApp": 0,
         "prefabSavePaths": [
             "."
         ],
         "fbxSavePaths": [
+            "/Users/jakubszura/Downloads",
             "Models",
             ".",
-            "/Users/jakubszura/Downloads"
+            "/Models"
         ],
         "selectedFbxPath": 0,
         "selectedPrefabPath": 0,
-        "dccOptionNames": [],
-        "dccOptionPaths": [],
+        "dccOptionNames": [
+            "Maya 2020"
+        ],
+        "dccOptionPaths": [
+            "/Applications/Autodesk/maya2020/Maya.app/Contents/MacOS/Maya"
+        ],
         "exportModelSettingsSerialize": {
-            "exportFormat": 0,
+            "exportFormat": 1,
             "animatedSkinnedMesh": false,
             "mayaCompatibleNaming": true,
             "include": 0,

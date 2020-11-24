@@ -8,6 +8,8 @@ TagManager:
   - inside
   - door
   - wall
+  - Grabbable
+  - KeyHole
   layers:
   - Default
   - TransparentFX
