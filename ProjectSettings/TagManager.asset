@@ -10,6 +10,8 @@ TagManager:
   - wall
   - Grabbable
   - KeyHole
+  - GrabberHand
+  - Key
   layers:
   - Default
   - TransparentFX

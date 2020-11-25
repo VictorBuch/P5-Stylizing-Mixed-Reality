@@ -11,11 +11,16 @@ public class ColliderScript : MonoBehaviour
     public GameObject hiddenEnvironment;
     public GameObject vrOnlyEnvironment;
     public GameObject camera;
+    public GameObject key;
+    public GameObject magnet;
+    public GameObject center;
     public bool doorEntered;
     public bool inVr = false;
     public bool inVrSide = false;
     public bool insideColliding;
     public bool outsideColliding;
+    public bool grabbing = false;
+    public bool grabbableIsNear = false;
     public float turnSpeed = 0.5f;
 
     // Start is called before the first frame update
@@ -56,7 +61,16 @@ public class ColliderScript : MonoBehaviour
           camera.GetComponent<Transform>().Rotate(0.0f, turnSpeed, 0.0f);
         }
 
+        //FOR GRABBING
+        if (Input.GetAxis("XRI_Right_Trigger") > 0.01f)
+        {
+            grabKey();
+        }
 
+        if (Input.GetAxis("XRI_Right_Trigger") < 0.01f)
+        {
+            unGrabKey();
+        }
 
     }
 
@@ -107,6 +121,11 @@ public class ColliderScript : MonoBehaviour
         {
             Debug.Log("YOURE WINNER");
         }
+
+        if (id == "Grabber" && collidingObjectId == "Key") 
+        {
+
+        }
     }
 
     public void uncollide(string id, string collidingObjectId)
@@ -128,6 +147,25 @@ public class ColliderScript : MonoBehaviour
             outsideColliding = false;
             if (insideColliding && !doorEntered) { if (!inVr) { disableVST(); } inVrSide = true; }
         }
+
+        if (id == "Grabber" && collidingObjectId == "Key")
+        {
+
+        }
+    }
+
+    private void grabKey()
+    {
+        grabbing = true;
+        key.GetComponent<Rigidbody>().isKinematic = true;
+        key.transform.parent = magnet.transform;
+    }
+
+    private void unGrabKey()
+    {
+        grabbing = false;
+        key.GetComponent<Rigidbody>().isKinematic = false;
+        key.transform.parent = center.transform;
     }
 
 
