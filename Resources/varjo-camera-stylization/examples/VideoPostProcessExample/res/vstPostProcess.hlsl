@@ -194,7 +194,6 @@ float4 applyPointilism(in float2 uv, in float pointilismStep, in float pointilis
 
     float color_max = max(max(color.r, color.b), color.g);
     float color_min = min(min(color.r, color.b), color.g);
-    float delta = color_max - color_min;
 
     float threshold = max((color_min + color_max) / 2.0, pointilismThreshold);
 
